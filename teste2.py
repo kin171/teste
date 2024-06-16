@@ -10,8 +10,7 @@ mes=input('QUAL MES VC NASCEU?')
 DIA=INPUT('QUAL DIA VC NASCEU?')
 anoNascimento=input('Que ano vç nasceu?')
 ano=date.today().year
-MESAGORA=DATE.TODAY().MONTH
-DIAAGORA=DATE.TODAY().DAY
+
 hora=datetime.now().time()
 horaFormat=hora.strftime('%H:%M:%S')
 calcularIdade=int(ano) - int(anoNascimento)
