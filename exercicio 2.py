@@ -1,4 +1,4 @@
-n1=input('digite um numero')
-n2=input('digite outro numero ')
-s=int(n1) * int(n2)
-print('o valor e',s)
+n1=float(input('digite um valor'))
+n2=float(input('digite um valor '))
+s= n1 * n2
+print('o valor e {}'.format (s))
