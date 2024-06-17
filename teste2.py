@@ -7,7 +7,7 @@ filme = input("qual seu filme favorito")
 estado = input("Qual o estado que vc nasceu?")
 serie = input("Que serie esta vendo no momento?")
 mes = input("QUAL MES VC NASCEU?")
-DIA = input("QUAL DIA VC NASCEU?")
+dia = input("QUAL DIA VC NASCEU?")
 anoNascimento = input("Que ano vç nasceu?")
 ano = date.today().year
 
@@ -26,6 +26,12 @@ print(
     anime,
     "\n Seu filme favorito é",
     filme,
+    '\n vc nasceu no dia',
+    dia,
+    'de',
+    mes,
+    'no ano de',
+    anoNascimento,
 )
 print(
     "vc esta no ano de",
