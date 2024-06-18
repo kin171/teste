@@ -1,4 +1,8 @@
-n1=input('digite um numero ')
-n2=input('digite um numero ')
+n1=float(input('digite um numero '))
+n2=float(input('digite um numero '))
 s=n1+n2
 print('o calculo é', s)
+print('a soma de {} mais {} é igual a {}'.format (n1,n2,s))
+print(type(s))
+s.isnumeric()
+from datetime import date
