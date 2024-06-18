@@ -2,7 +2,9 @@ n1=float(input('digite um numero '))
 n2=float(input('digite um numero '))
 s=n1+n2
 print('o calculo é', s)
+s1=input('digite algo')
 print('a soma de {} mais {} é igual a {}'.format (n1,n2,s))
 print(type(s))
-s.isnumeric()
-from datetime import date
+print(s1.isnumeric())
+print(s1.isalnum())
+print(s1.isupper())
