@@ -18,15 +18,19 @@ dif2 = diferenca - duracao
 
 
 #arquivo = open('jornada agricola.txt', 'a')
-def salvar_informacoes(dados, arquivo):
+#def salvar_informacoes(dados, arquivo):
 
-  with open('jornada agricola.txt', 'a') as arquivo:
-    for linha in dados:
-      arquivo.write(linha + '\n')
+  #with open('jornada agricola.txt', 'a') as arquivo:
+    #for linha in dados:
+     # arquivo.write(linha + '\n')
 
 
 dados = [datae, datas, diferenca]
-salvar_informacoes(dados, "jornada agricola,txt")
+with open('jornada agricola.txt', 'a') as arquivo:
+  arquivo.write(dados)
+
+
+#salvar_informacoes(dados, "jornada agricola,txt")
 
 #arquivo.close()
 
