@@ -1,9 +1,26 @@
-import datetime
+from datetime import datetime, timedelta
 
-data1 = datetime.datetime(2023, 3, 8)  # Altere para a primeira data
-data2 = datetime.datetime(2023, 3, 1)  # Altere para a segunda data
+dataentrada = input('Data entrada:')
+datasaida = input('Data saida:')
+horaalmoco=('1:00')
+datae = datetime.strptime(dataentrada,('%H:%M'))
+datas = datetime.strptime(datasaida,('%H:%M'))
+horaAlmoco = datetime.strptime(horaalmoco,('%H:%M'))
 
-diferenca = data1 - data2
 
-print("Diferença em dias:", diferenca.days)
+data=(1900, 1, 1)
+diferenca = datas - datae
+dif1 = datas - horaAlmoco
+dif3 = dif1 - diferenca
+dif2 = datetime.fromtimestamp(diferenca.total_seconds()) 
 
+total = ( dif2 - horaAlmoco)
+
+print("Diferença em dias:", diferenca)
+print(f'A jornada foi de {total}')
+print(diferenca)
+print(dif1)
+print(dif2)
+print(dif3)
+print(data)
+print(total)
