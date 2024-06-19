@@ -25,8 +25,8 @@ dif2 = diferenca - duracao
  #     arquivo.write(linha + '\n')
 import json
 dados = [datae, datas, diferenca]
-def salvar_dados(dados, jornada agricola):
-    with open(jornada agricola, "a") as arquivo:
+def salvar_dados(dados, arquivo):
+    with open(arquivo, "a") as arquivo:
         json.dump(dados, arquivo)
 
 # Example usage
