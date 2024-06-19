@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
-from os import write
-
+import os
 
 duracao = timedelta(hours = 1)  # Soma 1 horas
 
@@ -9,7 +8,7 @@ datasaida = input('Data saida e hora:')
 horaalmoco=('1:00')
 datae = datetime.strptime(dataentrada,('%d/%m/%Y %H:%M'))
 datas = datetime.strptime(datasaida,('%d/%m/%Y %H:%M'))
-horaAlmoco = datetime.strptime(horaalmoco,('%H:%M'))
+horaAlmoco = datetime.strptime(horaalmoco,('%d/%m/%Y %H:%M'))
 
 diferenca = datas - datae
 #dif1 = datas - horaAlmoco
@@ -18,12 +17,12 @@ dif2 = diferenca - duracao
 #open ('jornada agricola.txt', 'a')
 
 
-arquivo = open('jornada agricola.txt', 'a')
-def salvar_informacoes(dados, jornada agricola):
+#arquivo = open('jornada agricola.txt', 'a')
+def salvar_informacoes(dados, arquivo):
 
   with open('jornada agricola.txt', 'a') as arquivo:
-    for dado in dados:
-      arquivo.write(dado + "\n")
+    for linha in dados:
+      arquivo.write(linha + '\n')
 
 
 dados = [datae, datas, diferenca]
