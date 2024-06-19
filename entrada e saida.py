@@ -11,10 +11,10 @@ horaAlmoco = datetime.strptime(horaalmoco,('%H:%M'))
 data=(1900, 1, 1)
 diferenca = datas - datae
 dif1 = datas - horaAlmoco
-dif3 = dif1 - diferenca
-dif2 = datetime.fromtimestamp(diferenca.total_seconds()) 
+dif2 = datae - horaAlmoco 
+dif3 = dif1 - dif2
 
-total = ( dif2 - horaAlmoco)
+total = ( dif3 - dif2)
 
 print("Diferença em dias:", diferenca)
 print(f'A jornada foi de {total}')
