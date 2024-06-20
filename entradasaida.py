@@ -8,14 +8,14 @@ duracao = timedelta(hours = 1)  # Soma 1 horas
 
 
 dataentrada = input('Data entrada e hora:')
-
 datasaida = input('Data saida e hora:')
-horaEntrada = '7:20'
-
+horanormal = ('7:20')
 datae = datetime.strptime(dataentrada,('%d/%m/%Y %H:%M'))
-
 datas = datetime.strptime(datasaida,('%d/%m/%Y %H:%M'))
-dif1 = datetime.strptime(horaEntrada,('%d/%m/%Y %H:%M'))
+dif1 = datetime.strptime(horanormal,('%H:%M')).time()
+hj = datetime.today()
+combined_datetime = datetime(year=hj.year, month=hj.month, day=hj.day,
+                                     hour=dif1.hour, minute=dif1.minute, second=0)
 
 
 diferenca = datas - datae
