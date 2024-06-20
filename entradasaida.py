@@ -1,12 +1,6 @@
 from datetime import datetime, timedelta
 import os
-
-import json
-
-
 duracao = timedelta(hours = 1)  # Soma 1 horas
-
-
 dataentrada = input('Data entrada e hora:')
 datasaida = input('Data saida e hora:')
 horanormal = ('7:20')
@@ -17,11 +11,11 @@ hj = datetime.today()
 combined_datetime = datetime(year=hj.year, month=hj.month, day=hj.day,
                                      hour=dif1.hour, minute=dif1.minute, second=0)
 
-
 diferenca = datas - datae
 dif2 = diferenca - duracao 
-if dif2 >= dif1:
-    dif3 = datas - dif1
+print(dif2)
+if dif2 >= combined_datetime:
+    dif3 = datas - combined_datetime
 dado =str(datae)+ ' ;'+ str(datas)+ ';'+ str(dif2) + ';'+ str(dif3)  # Substitua com seus valores reais
 with open('jornada_agricola.txt', 'a') as arquivo:
     # Escrevendo os dados no arquivo
