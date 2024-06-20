@@ -35,12 +35,16 @@ dados = [datae, datas, dif2]
 dados = [datae, datas, dif2]  # Substitua com seus valores reais
 
 # Abrindo o arquivo para escrita (modo "a" para anexar ao final)
-with open('jornada_agricola.txt', 'a') as arquivo:
+
+def salvar(dados, arquivo):
+    with open('jornada_agricola.txt', 'a') as arquivo:
 
     # Convertendo os dados para JSON (opcional, mas recomendado para melhor formatação)
-    dados_json = json.dumps(dados)
+        dados_json = json.dumps(dados)
 
     # Escrevendo os dados no arquivo
-    arquivo.write(dados_json + '\n')  # Adiciona quebra de linha no final
+        arquivo.write(dados_json + '\n')  # Adiciona quebra de linha no final
+
+salvar(dados, 'jornada_agricola.txt')
 
 
