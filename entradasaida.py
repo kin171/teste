@@ -2,7 +2,8 @@ from datetime import datetime, timedelta
 
 # Inicialização de variavel
 encerrar = 'N'
-horaNormal = timedelta(hours=7, minutes=20)
+
+
 frotasLista = ["VA1", "VA2", "VA3", "VB1", "VB2","VB3","VC1","VC2","VC3","BR1","BR2","BR3","PR1","PR2","PR3"]
 turnolista = ["A", "B", "C"]
 # Definição de funções
@@ -46,26 +47,41 @@ def definirDataSaida():
     datas = datetime.strptime(dataHoraString,('%d/%m/%Y %H:%M'))
     return datas
 
+def calcularJornada(datae, datas):
+    duracao = timedelta(hours = 1) # Soma 1 horas
+    diferenca = datas - datae
+    jornada = diferenca - duracao
+    return jornada
 
+def calcularHoraExtra(jornada):
+    horaNormal = timedelta(hours=7, minutes=20)
+    if jornada >= horaNormal:
+        horaextra = jornada - horaNormal
+    else:
+        horaextra = 0
 
+    return horaextra
+
+def formatarValoresString (frota, turno, datae, datas, jornada, horaextra):
+    valores = str(frota) + ';' + str(turno) + ';' + str(datae) + ';'+ str(datas)+ ';' + str(jornada) + ';'+ str(horaextra)
+    return valores
 
 # Main____________________________________________________
 while  encerrar == 'N':
-    duracao = timedelta(hours = 1)  # Soma 1 horas
+
+# Inputs____________________________
     frota = definirFrota()
     turno = definirTurno()
     datae = definirDataEntrada() 
     datas = definirDataSaida()
-
+#____________________________________
+# Calculos___________________________
+    jornada = calcularJornada(datae, datas)
+    horaextra = calcularHoraExtra(jornada)
+#____________________________________
+#Valores Formatados_____________________
+valor = formatarValoresString(frota, turno, datae, datas, jornada, horaextra)
     
-    #diferenca = datas - datae
-    #jornada = diferenca - duracao 
-
-    #if jornada >= horaNormal:
-        #horaextra = jornada - horaNormal
-    #else:
-        #horaextra = 0
-
     #valores = str(frota) + ';' + str(turno) + ';' + str(datae) + ';'+ str(datas)+ ';' + str(jornada) + ';'+ str(horaextra)
     print(valores)
 
