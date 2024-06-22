@@ -99,24 +99,30 @@ while  encerrar == 'N':
                         frota = definirFrota()
                         confir = input("\n Dados corretos?(s/n) ")
                         confir = confir.upper()
-                        break
-                    elif int(corrige) == 2:
-                        turno = definirTurno()
+                    #corrigir     
+                    elif int(corrige) == 1:
                         confir = input("\n Dados corretos?(s/n) ")
-                        confir = confir.upper()
+                        confir = confir.upper()  
                         break
-                    elif int(corrige) == 3:
-                        datae = definirDataEntrada()                        
-                        confir = input("\n Dados corretos?(s/n) ")
-                        confir = confir.upper()
+                    else :          
                         break
-                    elif int(corrige) == 4:
-                        datas = definirDataSaida()
-                        confir = input("\n Dados corretos?(s/n) ")
-                        confir = confir.upper()
-                        break
-                    else:
-                        break
+                elif int(corrige) == 2:
+                    turno = definirTurno()
+                    confir = input("\n Dados corretos?(s/n) ")
+                    confir = confir.upper()
+                    break
+                elif int(corrige) == 3:
+                    datae = definirDataEntrada()                        
+                    confir = input("\n Dados corretos?(s/n) ")
+                    confir = confir.upper()
+                    break
+                elif int(corrige) == 4:
+                    datas = definirDataSaida()
+                    confir = input("\n Dados corretos?(s/n) ")
+                    confir = confir.upper()
+                    break
+                else:
+                    break
 
         jornada = calcularJornada(datae, datas)
         horaextra = calcularHoraExtra(jornada)
