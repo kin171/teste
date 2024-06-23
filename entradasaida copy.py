@@ -18,7 +18,7 @@ def salvarDados(frota, turno, datae, datas, jornada, horaextra):
 def definirFrota():
     frota = "-"
     while frota not in frotasLista:
-        frota = input('ex:  \n va1 para a van da vinhaça \n va2 para a van da vinhaça \n va3 para a van da vinhaça  \n vb1 para a van da vinhaça  \n vb2 para a van da vinhaça  \nvb3 para a van da vinhaça  \n vc1 para a van da vinhaça \n vc2 para a van da vinhaça \n vc3 para a van da vinhaça  \n br1 para a van da brigada  \n br2 para a van da brigada \n br3 para a van da brigada  \n pr1 para a van da preparo \n pr1 para a van da preparo \n pr para a van da preparo \n Qual a frota da van?: ')
+        frota = input('ex:  \n v1 para a van da vinhaça \n v2 para a van da vinhaça \n v3 para a van da vinhaça  \n b1 para a van da brigada 1  \n b2 para a van da brigada   \n pr para a van da preparo  \n Qual a frota da van?: ')
         frota = frota.upper()
         if frota not in frotasLista:
             print('\n Frota inválida \n')
@@ -87,43 +87,39 @@ while  encerrar == 'N':
     confirma = input("\n Dados corretos?(s/n) ")
     confirma = confirma.upper()
     print(confirma)
-    for confir in confirma:
-        if confir == 'N':
+                
+    while confirma == "N":
+        if confirma == "N":
+            #TODO Corrigir validação de caso
+            corrige = input("\n Qual dado quer alterar?\n 1 para Frota \n 2 para Turno \n 3 para Data e Hora Entrada \n 4 para Data e Hora Saida \n ")
+            if int(corrige) == 1:
+                frota = definirFrota()
+                confirma = input("\n Dados corretos?(s/n) ")
+                confirma = confir.upper()
+                #corrigir     
+            elif confirma == 's':
+                confirma = confirma.uppe r()
+                break
+            else :          
+                break 
+        elif int(corrige) == 2:
+            turno = definirTurno()
+            confirma = input("\n Dados corretos?(s/n) ")
+            confirma = confirma.upper()
+            break
+        elif int(corrige) == 3:
+            datae = definirDataEntrada()                        
+            confirma = input("\n Dados corretos?(s/n) ")
+            confirma = confirma.upper()
+            break
+        elif int(corrige) == 4:
+            datas = definirDataSaida()
+            confirma = input("\n Dados corretos?(s/n) ")
+            confirma = confirma.upper()
+            break
+        else:
+            break
             
-            while confirma == "N":
-                if confirma == "N":
-
-                    #TODO Corrigir validação de caso
-                    corrige = input("\n Qual dado quer alterar?\n 1 para Frota \n 2 para Turno \n 3 para Data e Hora Entrada \n 4 para Data e Hora Saida \n ")
-                    if int(corrige) == 1:
-                        frota = definirFrota()
-                        confir = input("\n Dados corretos?(s/n) ")
-                        confir = confir.upper()
-                    #corrigir     
-                    elif int(corrige) == 1:
-                        confir = input("\n Dados corretos?(s/n) ")
-                        confir = confir.upper()  
-                        break
-                    else :          
-                        break
-                elif int(corrige) == 2:
-                    turno = definirTurno()
-                    confir = input("\n Dados corretos?(s/n) ")
-                    confir = confir.upper()
-                    break
-                elif int(corrige) == 3:
-                    datae = definirDataEntrada()                        
-                    confir = input("\n Dados corretos?(s/n) ")
-                    confir = confir.upper()
-                    break
-                elif int(corrige) == 4:
-                    datas = definirDataSaida()
-                    confir = input("\n Dados corretos?(s/n) ")
-                    confir = confir.upper()
-                    break
-                else:
-                    break
-
         jornada = calcularJornada(datae, datas)
         horaextra = calcularHoraExtra(jornada)
         
