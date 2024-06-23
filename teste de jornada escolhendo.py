@@ -28,7 +28,18 @@ def definirDataEntrada():
     dataentrada = input('\n Data entrada: ')
     horaEntrada = input('\n hora entrada: ')
     dataHoraStringEntrada = str(dataentrada) + " " + str(horaEntrada) 
-    dataehora = datetime.strptime(dataHoraStringEntrada,('%d/%m/%Y %H:%M')) 
+    dataehora = datetime.strptime(dataHoraStringEntrada,('%d/%m/%Y %H:%M'))
+    
+    # ... (código para obter data e hora do usuário)
+    
+    try:
+        dataehora = datetime.strptime(dataHoraStringEntrada, '%d/%m/%Y %H:%M')
+    except ValueError:
+        print('DATA OU HORA INVÁLIDA!')
+        return None  # Retorna None se a data for inválida
+
+    # ... (código para utilizar a data e hora válida)
+         
     return datae
 
 def definirDataSaida():
@@ -44,17 +55,28 @@ turno = definirTurno()
 datae = definirDataEntrada()
 datas = definirDataSaida()
 
-def escolhainformação():
-    escolha = '-'
-    
-    while escolhainformação not in escolha:
-        if escolha == 1 :
-            datae = definirDataEntrada()
-            datae == ('%d/%m/%Y %H:%M')            
-            print = ('Data ou hora invalida:')            
-        elif escolha == 2:
-            datas = definirDataSaida()
-            datas == ('%d/%m/%Y %H:%M')
-            print = ('Data ou hora invalida:')
+def escolhaInformacao():
+    escolha = input('Escolha qual informação deseja alterar: \n'
+                    '1. Data e hora de entrada\n'
+                    '2. Data e hora de saída\n')
+
+    while True:
+        if escolha == '1':
+            novaDataEntrada = definirDataEntrada()
+            if novaDataEntrada:
+                return novaDataEntrada, 'entrada'
+            else:
+                print('Falha ao obter data e hora de entrada válida.')
+        elif escolha == '2':
+            novaDataSaida = definirDataSaida()
+            if novaDataSaida:
+                return novaDataSaida, 'saida'
+            else:
+                print('Falha ao obter data e hora de saída válida.')
+        else:
+            print('Opção inválida. Tente novamente.')
+            escolha = input('Escolha qual informação deseja alterar: \n'
+                            '1. Data e hora de entrada\n'
+                            '2. Data e hora de saída\n')
             
                     
