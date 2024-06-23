@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 def definirDataEntrada():
     data_valida = False
     while not data_valida:
-        dataentrada = input('\n Data entrada: ')
+        dataentrada = input('\n Data entrada: ') 
         horaEntrada = input('\n Hora entrada: ')
         dataHoraStringEntrada = str(dataentrada) + " " + str(horaEntrada)
 
