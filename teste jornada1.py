@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
-import re
 
-import datetime
+
+
 
 def validar_data_hoje(data_str):
     """
@@ -28,9 +28,36 @@ def validar_data_hoje(data_str):
         return False
 
 # Exemplo de uso
-data_str = input('Digite a data (dd/mm/aaaa): ')
+ data_str = input('Digite a data (dd/mm/aaaa): ')
+hora_str = input('Digite a hora (HH:MM): ')
 
 if validar_data_hoje(data_str):
     print('Data válida: É a data de hoje!')
 else:
     print('Data inválida.')
+
+
+def validar_hora(hora_str):
+  """
+  Valida se a string representa uma hora no formato HH:MM.
+
+  Argumentos:
+      hora_str: A string que contém a hora a ser validada.
+
+  Retorno:
+      Objeto datetime representando a hora válida ou None se a hora for inválida.
+  """
+  try:
+    hora_obj = datetime.strptime(hora_str, '%H:%M')
+    return hora_obj
+  except ValueError:
+    print('FORMATO DE HORA INVÁLIDO. Use o formato HH:MM.')
+    return None
+
+# Exemplo de uso
+
+
+if validar_hora(hora_str):
+  print(f'Hora válida: {hora_str}')
+else:
+  print('Hora inválida.')
