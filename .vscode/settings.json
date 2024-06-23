@@ -12,7 +12,9 @@
         "hoje",
         "horanormal",
         "invalida",
+        "inválida",
         "linha",
-        "Nascimento"
+        "Nascimento",
+        "validar"
     ]
 }
