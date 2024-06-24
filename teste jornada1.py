@@ -15,7 +15,7 @@ def escolha():
                 dataentrada()
         #return opcao_escolhida
             elif opcao_escolhida == 2:
-                validar_hora()
+                datasaida()
             else:
                 print('Opção inválida. Tente novamente.')
             
@@ -36,9 +36,14 @@ def dataentrada():
         horastr = datetime.strptime(horaentrada, '%H:%M')
         formathora = ('%H:%M')
         if horastr == formathora:
-            return horastr 
+            datahorastr = datahjstr + ' '+horastr
+            return datahorastr 
         else:
             print ('hora invalida')
+            dataentrada()
+
+def datasaida():
+    print('deu certo ate aqui!!!!')
 escolha()
         
      
