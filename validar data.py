@@ -1,21 +1,25 @@
-import datetime
-data_hoje = datetime.date.today()
 
-def validar_data(data_texto):
-    data_objeto = imput('insira data: ')
+from datetime import date, datetime, timedelta
+import time
+import re
+def definirDataEntrada():
     """
-    Converte a data no formato string para o formato datetime.date e valida se é a data de hoje.
-
-    Args:
-    data_texto: A data no formato string (por exemplo, "2024-06-23").
-
-    Returns:
-    True se a data for a data de hoje, False caso contrário.
+    This Python function defines an entry date and time, checks if it is today, and returns the combined
+    datetime object.
+    :return: The function `definirDataEntrada()` is returning the variable `datae`, which is a datetime
+    object representing the date and time input by the user.
     """
-    try:
-        data_objeto = datetime.datetime.strptime(data_texto, "%Y-%m-%d").date()
-    except ValueError:
-        return False
+    dataentrada = input('\n Data entrada: ')
+    horaEntrada = input('\n hora entrada: ')
+    dataHoraStringEntrada = str(dataentrada) + " " + str(horaEntrada)
+    datae = datetime.strptime(dataHoraStringEntrada,('%d/%m/%Y %H:%M'))
+    datahj = datetime.date.today()
 
-    return data_objeto == data_hoje
-validar_data()
+    # Check if the date is today
+    if datae.date() == datahj:
+        print("A data informada é hoje!")
+    else:
+        print("A data informada não é hoje.")
+
+    return datae
+definirDataEntrada()
