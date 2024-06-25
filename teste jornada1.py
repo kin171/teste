@@ -35,14 +35,14 @@ def dataentrada():
             datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
             if dataentrada != datahjstr:
                 print ('Data invalida')            
-                dataentrada()
+                
             elif dataentrada == datahjstr:
                 horaentrada = input('Digite a hora ENTRADA: HH:MM \n')
                 horastr = datetime.strptime(horaentrada, '%H:%M')
                 datahorastr = str(dataentradastr) + ' '+ str(horastr)
-                print(datahorastr)
-            else:
-                print('Data inválida. Tente novamente.')    
+                dataentradastr = datetime.strptime(datahorastr, '%d/%m/%Y %H:%M')
+                print(dataentradastr)
+               
         except ValueError:
             print('Data inválida. Tente novamente.')
             return False
