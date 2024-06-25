@@ -95,13 +95,12 @@ while  encerrar == 'N':
             if int(corrige) == 1:
                 frota = definirFrota()
                 confirma = input("\n Dados corretos?(s/n) ")
-                confirma = confir.upper()
-                #corrigir     
+                confirma = confirma.upper()
+                                            #co
             elif confirma == 's':
-                confirma = confirma.uppe r()
+                confirma = confirma.upper()
                 break
-            else :          
-                break 
+             
         elif int(corrige) == 2:
             turno = definirTurno()
             confirma = input("\n Dados corretos?(s/n) ")

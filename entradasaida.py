@@ -18,7 +18,7 @@ def salvarDados(frota, turno, datae, datas, jornada, horaextra):
 def definirFrota():
     frota = "-"
     while frota not in frotasLista:
-        frota = input('ex:  \n va para a van da vinhaça   \n vb para a van da vinhaça 2 \n vc para a van da vinhaça 3 \n br1 para a van da brigada 1 \n br2 para a van da brigada 2 \n pr1 para a van da preparo \n Qual a frota da van?: ')
+        frota = str("va1") # TODO substituir por input('ex:  \n va para a van da vinhaça   \n vb para a van da vinhaça 2 \n vc para a van da vinhaça 3 \n br1 para a van da brigada 1 \n br2 para a van da brigada 2 \n pr1 para a van da preparo \n Qual a frota da van?: ')
         frota = frota.upper()
         if frota not in frotasLista:
             print('\n Frota inválida \n')
@@ -27,22 +27,22 @@ def definirFrota():
 def definirTurno():
     turno = "-"
     while turno not in turnolista:
-        turno = input('\n Qual o tuno?: ')
+        turno = str("a") # TODO substituir por input('\n Qual o tuno?: ')
         turno = turno.upper()
         if turno not in turnolista:
             print('\n Turno inválido \n')
     return turno
 
 def definirDataEntrada():
-    dataentrada = input('\n Data entrada: ')
-    horaEntrada = input('\n hora entrada: ')
+    dataentrada = str("25/06/2024") # TODO substituir por input('\n Data entrada: ')
+    horaEntrada = str("06:00") # TODO substituir por input('\n hora entrada: ')
     dataHoraStringEntrada = str(dataentrada) + " " + str(horaEntrada) 
     datae = datetime.strptime(dataHoraStringEntrada,('%d/%m/%Y %H:%M'))
     return datae
 
 def definirDataSaida():
-    datasaida = input('\n Data saida: ')
-    horaSaida = input('\n Hora saida: ')
+    datasaida = str("25/06/2024") # TODO substituir por input('\n Data saida: ')
+    horaSaida = str("08:00") # TODO substituir por input('\n Hora saida: ')
     dataHoraString = str(datasaida) + " " + str(horaSaida) 
     datas = datetime.strptime(dataHoraString,('%d/%m/%Y %H:%M'))
     return datas
@@ -69,20 +69,20 @@ def formatarValoresString (frota, turno, datae, datas, jornada, horaextra):
 # Main____________________________________________________
 while  encerrar == 'N':
 
-# Inputs____________________________
+    # Inputs____________________________
     frota = definirFrota()
     turno = definirTurno()
     datae = definirDataEntrada() 
     datas = definirDataSaida()
-#____________________________________
-# Calculos___________________________
+    #____________________________________
+    # Calculos___________________________
     jornada = calcularJornada(datae, datas)
     horaextra = calcularHoraExtra(jornada)
-#____________________________________
-#Valores Formatados_____________________
+    #____________________________________
+    #Valores Formatados_____________________
     valores = formatarValoresString(frota, turno, datae, datas, jornada, horaextra)
     print(valores)
-#_______________________________________
+    #_______________________________________
 
     confirma = input("\n Dados corretos?(s/n) ")
     confirma = confirma.upper()
@@ -91,21 +91,19 @@ while  encerrar == 'N':
         if confirma == "N":
 
             #TODO Corrigir validação de caso
-            corrige = input("\n Qual dado quer alterar?\n 1 para Frota \n 2 para Turno \n 3 para Data e Hora Entrada \n 4 para Data e Hora Saida \n ")
+            corrige = int(input("\n Qual dado quer alterar?\n 1 para Frota \n 2 para Turno \n 3 para Data e Hora Entrada \n 4 para Data e Hora Saida \n 0 para Continuar sem mais alterações: "))
             if corrige == 1:
                 frota = definirFrota()
-                break
+                continue
             elif corrige == 2:
                 turno = definirTurno()
-                break
+                continue
             elif corrige == 3:
                 datae = definirDataEntrada() 
-                break
+                continue
             elif corrige == 4:
                 datas = definirDataSaida()
-                break
-            else:
-                break
+                continue
 
         jornada = calcularJornada(datae, datas)
         horaextra = calcularHoraExtra(jornada)
@@ -118,4 +116,5 @@ while  encerrar == 'N':
 
     encerrar = input('Deseja encerrar o programa? (s/n): ')
     encerrar = encerrar.upper()
-    print ("Volte sempre!!")
+    
+print ("Volte sempre!!")

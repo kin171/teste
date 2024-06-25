@@ -28,19 +28,17 @@ def dataentrada():
     dataentradastr = datetime.strptime(dataentrada, '%d/%m/%Y')
     datahj = datetime.today()
     datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
-    if dataentradastr != datahjstr:
-        print: ('Data invalida')
+    if dataentrada != datahjstr:
+        print: ('Data invalida')        
         dataentrada()
     else:
         horaentrada = input('Digite a hora: HH:MM \n')
         horastr = datetime.strptime(horaentrada, '%H:%M')
-        formathora = ('%H:%M')
-        if horastr == formathora:
-            datahorastr = datahjstr + ' '+horastr
-            return datahorastr 
-        else:
-            print ('hora invalida')
-            dataentrada()
+        datahorastr = dataentradastr + ' '+ horastr
+        print(datahorastr)
+        return datahorastr 
+       
+        
 
 def datasaida():
     print('deu certo ate aqui!!!!')

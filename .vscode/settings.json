@@ -10,12 +10,14 @@
         "entrada",
         "escolha",
         "extrair",
+        "formatar",
         "hoje",
         "horanormal",
         "invalida",
         "inválida",
         "linha",
         "Nascimento",
-        "validar"
+        "validar",
+        "valores"
     ]
 }
