@@ -52,21 +52,21 @@ def datasaida():
     while True:
         try:
             datasaida = input('DIGITE A DATA SAIDA: \n DD/MM/AAAA:')
-            dataentradastr = datetime.strptime(datasaida, '%d/%m/%Y')
+            datasaidastr = datetime.strptime(datasaida, '%d/%m/%Y')
             datahj = datetime.today()
             datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
             if datasaida != datahjstr:
                 print ('Data invalida') 
-                datasaida()           
+                          
                 
             elif datasaida == datahjstr:
                 horaentrada = input('Digite a hora SAIDA: HH:MM \n')
                 horastr = datetime.strptime(horaentrada, '%H:%M')
-                datahorastr = dataentradastr + ' '+ horastr
+                datahorastr = str(datasaidastr) + ' '+ str(horastr)
+                datahorastr = datetime.strptime(datahorastr,'%d/%m/%Y %H:%M')
                 print(datahorastr)
-            else:
-                print('Data inválida. Tente novamente.')    
+              
         except ValueError:
-            print('Data inválida. Tente novamente.')
+            print('Da inválida. Tente novamente.')
         return False
 escolha()
