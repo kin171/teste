@@ -29,7 +29,7 @@ def escolha():
 def dataentrada():
     while True:
         try:
-            dataentrada = input('DIGITE A DATA: \n DD/MM/AAAA:')
+            dataentrada = input('DIGITE A DATA ENTRADA: \n DD/MM/AAAA:')
             dataentradastr = datetime.strptime(dataentrada, '%d/%m/%Y')
             datahj = datetime.today()
             datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
@@ -37,7 +37,7 @@ def dataentrada():
                 print ('Data invalida')            
                 dataentrada()
             elif dataentrada == datahjstr:
-                horaentrada = input('Digite a hora: HH:MM \n')
+                horaentrada = input('Digite a hora ENTRADA: HH:MM \n')
                 horastr = datetime.strptime(horaentrada, '%H:%M')
                 datahorastr = str(dataentradastr) + ' '+ str(horastr)
                 print(datahorastr)
@@ -51,7 +51,7 @@ def dataentrada():
 def datasaida():
     while True:
         try:
-            datasaida = input('DIGITE A DATA: \n DD/MM/AAAA:')
+            datasaida = input('DIGITE A DATA SAIDA: \n DD/MM/AAAA:')
             dataentradastr = datetime.strptime(datasaida, '%d/%m/%Y')
             datahj = datetime.today()
             datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
@@ -60,7 +60,7 @@ def datasaida():
                 datasaida()           
                 
             elif datasaida == datahjstr:
-                horaentrada = input('Digite a hora: HH:MM \n')
+                horaentrada = input('Digite a hora SAIDA: HH:MM \n')
                 horastr = datetime.strptime(horaentrada, '%H:%M')
                 datahorastr = dataentradastr + ' '+ horastr
                 print(datahorastr)
