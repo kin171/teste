@@ -1,4 +1,3 @@
-
 from datetime import date, datetime, timedelta
 import time
 import re
@@ -13,7 +12,7 @@ def definirDataEntrada():
     horaEntrada = input('\n hora entrada: ')
     dataHoraStringEntrada = str(dataentrada) + " " + str(horaEntrada)
     datae = datetime.strptime(dataHoraStringEntrada,('%d/%m/%Y %H:%M'))
-    datahj = datetime.date.today()
+    datahj = datetime.today()
 
     # Check if the date is today
     if datae.date() == datahj:
