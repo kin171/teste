@@ -35,11 +35,11 @@ def dataentrada():
             datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
             if dataentrada != datahjstr:
                 print ('Data invalida')            
-                dataentra()
+                dataentrada()
             elif dataentrada == datahjstr:
                 horaentrada = input('Digite a hora: HH:MM \n')
                 horastr = datetime.strptime(horaentrada, '%H:%M')
-                datahorastr = dataentradastr + ' '+ horastr
+                datahorastr = str(dataentradastr) + ' '+ str(horastr)
                 print(datahorastr)
             else:
                 print('Data inválida. Tente novamente.')    
@@ -69,3 +69,4 @@ def datasaida():
         except ValueError:
             print('Data inválida. Tente novamente.')
         return False
+escolha()
