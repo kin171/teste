@@ -3,6 +3,7 @@
         "arquivo",
         "datae",
         "dataentrada",
+        "datanova",
         "datasaida",
         "Deseja",
         "duracao",
@@ -10,12 +11,14 @@
         "entrada",
         "escolha",
         "extrair",
+        "formatar",
         "hoje",
         "horanormal",
         "invalida",
         "inválida",
         "linha",
         "Nascimento",
-        "validar"
+        "validar",
+        "valores"
     ]
 }
