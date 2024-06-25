@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
- # type: ignore
+
+# type: ignore
 def escolha():
     """
     Apresenta um menu de opções e retorna a escolha do usuário.
@@ -23,25 +24,48 @@ def escolha():
             print('Valor inválido. Digite um número inteiro (1 ou 2).')
             escolha()
 
+
+    
 def dataentrada():
-    dataentrada = input('DIGITE A DATA: \n DD/MM/AAAA:')
-    dataentradastr = datetime.strptime(dataentrada, '%d/%m/%Y')
-    datahj = datetime.today()
-    datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
-    if dataentrada != datahjstr:
-        print: ('Data invalida')        
-        dataentrada()
-    else:
-        horaentrada = input('Digite a hora: HH:MM \n')
-        horastr = datetime.strptime(horaentrada, '%H:%M')
-        datahorastr = dataentradastr + ' '+ horastr
-        print(datahorastr)
-        return datahorastr 
-       
+    while True:
+        try:
+            dataentrada = input('DIGITE A DATA: \n DD/MM/AAAA:')
+            dataentradastr = datetime.strptime(dataentrada, '%d/%m/%Y')
+            datahj = datetime.today()
+            datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
+            if dataentrada != datahjstr:
+                print ('Data invalida')            
+                dataentra()
+            elif dataentrada == datahjstr:
+                horaentrada = input('Digite a hora: HH:MM \n')
+                horastr = datetime.strptime(horaentrada, '%H:%M')
+                datahorastr = dataentradastr + ' '+ horastr
+                print(datahorastr)
+            else:
+                print('Data inválida. Tente novamente.')    
+        except ValueError:
+            print('Data inválida. Tente novamente.')
+            return False
         
 
 def datasaida():
-    print('deu certo ate aqui!!!!')
-escolha()
-        
-     
+    while True:
+        try:
+            datasaida = input('DIGITE A DATA: \n DD/MM/AAAA:')
+            dataentradastr = datetime.strptime(datasaida, '%d/%m/%Y')
+            datahj = datetime.today()
+            datahjstr = datetime.strftime(datahj, '%d/%m/%Y')
+            if datasaida != datahjstr:
+                print ('Data invalida') 
+                datasaida()           
+                
+            elif datasaida == datahjstr:
+                horaentrada = input('Digite a hora: HH:MM \n')
+                horastr = datetime.strptime(horaentrada, '%H:%M')
+                datahorastr = dataentradastr + ' '+ horastr
+                print(datahorastr)
+            else:
+                print('Data inválida. Tente novamente.')    
+        except ValueError:
+            print('Data inválida. Tente novamente.')
+        return False
