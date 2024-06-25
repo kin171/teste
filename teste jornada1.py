@@ -42,10 +42,11 @@ def dataentrada():
                 datahorastr = str(dataentradastr) + ' '+ str(horastr)
                 dataentradastr = datetime.strptime(datahorastr, '%d/%m/%Y %H:%M')
                 print(dataentradastr)
-               
+            else:
+                print(dataentradastr)               
         except ValueError:
-            print('Data inválida. Tente novamente.')
-            return False
+            print('pulou direto')
+            
         
 
 def datasaida():
@@ -65,8 +66,10 @@ def datasaida():
                 datahorastr = str(datasaidastr) + ' '+ str(horastr)
                 datahorastr = datetime.strptime(datahorastr,'%d/%m/%Y %H:%M')
                 print(datahorastr)
-              
+                break
+            else:
+                print(datahorastr)  
         except ValueError:
-            print('Da inválida. Tente novamente.')
-        return False
+            print(' pulou aqui')
+        
 escolha()
