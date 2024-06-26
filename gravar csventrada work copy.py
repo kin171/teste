@@ -36,6 +36,8 @@ def formatarValoresString (frota, turno, datae, datas, jornada, horaextra):
     return valores
 
 
+       #turno = definirTurno()
+       #frota = definirFrota()
 
 def escolha():
     """
@@ -67,8 +69,7 @@ def dataentrada():
             # Validando a data de entrada
             data_str = input("Digite a data no formato dd/mm/aaaa: ")
             data_obj = datetime.strptime(data_str,'%d/%m/%Y')         
-            definirFrota()
-            definirTurno()
+            
             
             # Formatando data para string
             data_formatada = data_obj.strftime("%d/%m/%Y")
@@ -88,7 +89,7 @@ def dataentrada():
                     raise ValueError("Formato de hora inválido!")
 
                 # Formatando data e hora para string completa
-                data_hora_completa = f"{data_formatada};{hora_entrada};{Turno};{definirFrota}"
+                data_hora_completa = f"{data_formatada};{hora_entrada};{turno};{frota}"
 
                 # Gravando dados no arquivo CSV
                 with open("entrada.csv", "a", newline="") as arquivo_csv:
@@ -107,15 +108,13 @@ def dataentrada():
         break    
 
 def datasaida():
+        
     
     while True:
         try:
             # Validando a data de entrada
             data_str = input("Digite a data no formato dd/mm/aaaa: ")
             data_obj = datetime.strptime(data_str,'%d/%m/%Y')         
-            definirFrota()
-            definirTurno()
-            
             # Formatando data para string
             data_formatada = data_obj.strftime("%d/%m/%Y")
 
@@ -151,7 +150,7 @@ def datasaida():
         break            
 
 
-
+'''
 def corrigir(encerrar):
     while  encerrar == 'N':
 
@@ -203,4 +202,5 @@ def corrigir(encerrar):
         encerrar = input('Deseja encerrar o programa? (s/n): ')
         encerrar = encerrar.upper()
     print ("Volte sempre!!")
+'''
 escolha()
