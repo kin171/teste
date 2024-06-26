@@ -94,7 +94,7 @@ def dataentrada():
                 with open("entrada.csv", "a", newline="") as arquivo_csv:
                     escritor_csv = csv.writer(arquivo_csv)
                     escritor_csv.writerow([data_hora_completa])
-                    corrigir(encerrar = 'N')
+                    
                     print(f"Dados gravados com sucesso: {data_hora_completa}")
 
                 break  # Interrompendo o loop while
