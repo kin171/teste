@@ -87,20 +87,19 @@ def datasaida():
             datahj = datetime.strftime(data_hj, '%d/%m/%Y')
             
             if datahj == data_str:
-                print("Data atual, digite a hora de entrada:")
-                hora_entrada = input("Digite a hora de entrada (HH:MM): ")
+                hora_saida = input("Digite a hora de saida (HH:MM): ")
 
                 # Validando formato da hora
                 try:
-                    hora_obj = datetime.strptime(hora_entrada, "%H:%M")
+                    hora_obj = datetime.strptime(hora_saida, "%H:%M")
                 except ValueError:
                     raise ValueError("Formato de hora inválido!")
 
                 # Formatando data e hora para string completa
-                data_hora_completa = f"{data_formatada};{hora_entrada};{turno};{frota}"
-
+                data_hora_completa = f"{data_formatada};{hora_saida};{turno};{frota}"
+ 
                 # Gravando dados no arquivo CSV
-                with open("entrada.csv", "a", newline="") as arquivo_csv:
+                with open("saida.csv", "a", newline="") as arquivo_csv:
                     escritor_csv = csv.writer(arquivo_csv)
                     escritor_csv.writerow([data_hora_completa])
 
