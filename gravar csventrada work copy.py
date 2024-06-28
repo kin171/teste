@@ -36,8 +36,8 @@ def formatarValoresString (frota, turno, datae, datas, jornada, horaextra):
     return valores
 
 
-       #turno = definirTurno()
-       #frota = definirFrota()
+#turno = definirTurno()
+#frota = definirFrota()
 
 def escolha():
     """
@@ -63,7 +63,8 @@ def escolha():
 
 
 def dataentrada():
-    
+    definirFrota()
+    definirTurno()
     while True:
         try:
             # Validando a data de entrada
