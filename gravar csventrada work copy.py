@@ -63,9 +63,10 @@ def escolha():
 
 
 def dataentrada():
-    definirFrota()
-    definirTurno()
+    
     while True:
+        frota = definirFrota()
+        turno = definirTurno()
         try:
             # Validando a data de entrada
             data_str = input("Digite a data no formato dd/mm/aaaa: ")
