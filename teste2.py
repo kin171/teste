@@ -1,4 +1,5 @@
-from datetime import datetime, pandas
+from datetime import datetime
+import pandas as pd
 import csv
 '''
 date = input ('digite a data: \n')
@@ -10,9 +11,9 @@ if date != datas:
     print('data invalida')
 else:
     print('data valida:')    
-'''
+
 def converter_hora(hora_str):
-    """
+
     Converte string no formato HH:MM para objeto datetime.
     """
     try:
@@ -75,4 +76,31 @@ with open("saida.csv", "r") as arquivo_csv:
             print(f"Data: {data_str}, Hora: {hora_str}, Turno: {turno_str}, Frota: {frota_str}, Tempo de Serviço: {tempo_servico_formatado}")
         except ValueError as erro:
             print(f"Erro na linha {linha}: {erro}")
+
+'''
+
+
+# Atribuindo nomes de colunas personalizados
+nomes_colunas = ["data", "hora", "turno", "frota"]
+
+# Abrindo o arquivo CSV no modo leitura ("r")
+with open("saida.csv", "r") as arquivo_csv:
+    # Criando o objeto leitor de CSV com os nomes das colunas
+    leitor_csv = csv.DictReader(arquivo_csv, fieldnames=nomes_colunas)
+
+    # Processando as linhas como dicionários
+    for linha in leitor_csv:
+        date= input('qual data vc procura:')
+        
+            # Acessando os dados por chave (nome da coluna)
+            data = linha["data"]
+            hora = linha["hora"]
+            turno = linha["turno"]
+            frota = linha["frota"]
+
+        # Processamento ou análise dos dados
+        print(frota, turno, data, hora)
+
+
+
 
