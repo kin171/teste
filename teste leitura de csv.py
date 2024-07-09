@@ -72,7 +72,6 @@ if not linha_encontrada.empty:
 else:
     # ... (Mensagem de registro não encontrado)
     print ('nao achou ')
-'''
 
 # Lendo o arquivo CSV e armazenando em um DataFrame
 df = pd.read_csv("saida.csv")
@@ -89,3 +88,4 @@ if not linha_encontrada.empty:
     print(linha_encontrada.to_string(index=False))
 else:
     print(f"Registro com data '{dataprocura}' não encontrado.")
+'''
