@@ -1,5 +1,8 @@
 import pyautogui
 import time
+import tabula
+import pandas as pd
+
 pyautogui.PAUSE = 2
 
 pyautogui.press('win')
@@ -23,3 +26,4 @@ pyautogui.click(x=1414, y=778)
 pyautogui.click(x=1795, y=140)
 pyautogui.click(x=766, y=562)
 #pyautogui.press('enter')
+#dados = tabula.read_pdf('"C:\Users\kin50\Downloads\mpdf.pdf"')
