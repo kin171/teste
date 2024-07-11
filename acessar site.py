@@ -1,7 +1,11 @@
-import pyautogui
+import pyautogui as py
 pyautogui.PAUSE = 1
 pyautogui.press('win')
-pyautogui.write('chrome')
+pyautogui.write('whatsapp')
 pyautogui.press('enter')
-pyautogui.write('https://ozymandiasrealista.blogspot.com')
+py.write('caio agricola')
+py.press('enter')
+py.write('e aí viado')
+py.press)'enter')
+pyautogui.write('teste de automação ')
 pyautogui.press('enter')
