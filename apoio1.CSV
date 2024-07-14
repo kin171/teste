@@ -1,0 +1,25 @@
+cod;descrição;hora produtiva;descrição hora produtiva
+1;Irrigação;S;Produtiva
+2;Fertirrigação;S;Produtiva
+3;Aplic bioestimulante;S;Produtiva
+;;;
+;;;
+4;Aplic inset;S;Produtiva
+5;Aplic nematic;S;Produtiva
+6;Aplic vinhaça;S;Produtiva
+7;Lavagem de arrasto;S;Produtiva
+8;Lavagem sistema;S;Produtiva
+9;Limpeza em blocos;S;Produtiva
+;;;
+10;Limpeza rede principal;S;Produtiva
+11;Montagem de válvulas;S;Produtiva
+12;Chuva;N;Improdutiva
+13;Dry Off (preparação  dry off);N;Improdutiva
+14;Enchimento reservatório;N;Improdutiva
+15;Falta de energia;N;Improdutiva
+;;;
+16;Manutenção elétrica;N;Improdutiva
+17;Manutenção hidraulica (malha);N;Improdutiva
+18;Manutenção mecanica;N;Improdutiva
+19;Solo úmido;N;Improdutiva
+99;sem irrigação;N;Improdutiva
