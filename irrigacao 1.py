@@ -13,7 +13,8 @@ janela = tk.Tk()
 
 def inserir_codigo():
     data = entry_data.get()
-    #data = data.strftime("%d/%m/%Y")
+    #if data != str('%H:%M'):
+    #    print('Formato errado, digite novamente: ')    
     projeto = combobox_selecionar_tipo.get()
     setor = combobox_selecionar_tipo1.get()
     operacao = combobox_selecionar_tipo2.get()
@@ -32,8 +33,8 @@ def inserir_codigo():
     #grava os arquivos
     with open('baseirrigacao.csv','a') as arquivo:
         writer = csv.writer(arquivo)
-        writer.writerow([data, projeto, setor, operacao, insumo, insumo1, insumo2, insumo3, insumo4, insumo5, insumo6, insumo7, hora_inicial, hora_final])
-    
+        #writer.writerow([data, projeto, setor, operacao, insumo, insumo1, insumo2, insumo3, insumo4, insumo5, insumo6, insumo7, hora_inicial, hora_final])
+        arquivo.write(f'{data},{projeto},{setor},{operacao},{insumo},{insumo1},{insumo2},{insumo3},{insumo4},{insumo5}{insumo6},{insumo7},{hora_inicial},{hora_final} \n')
     #limpa os campos do formulario
     entry_data.delete(0, tk.END)
     combobox_selecionar_tipo.delete(0, tk.END)
@@ -85,6 +86,8 @@ label_data =  tk.Label(text="DATA")
 label_data.grid(row=2, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 entry_data =  tk.Entry()
 entry_data.grid(row=2, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
+#if data != str('%H:%M'):
+#    print('Formato errado, digite novamente: ')
 
 
 label_projeto = tk.Label(text="PROJETO")
