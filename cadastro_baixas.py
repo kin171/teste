@@ -87,10 +87,11 @@ label_data =  tk.Label(text="DATA")
 label_data.grid(row=2, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 entry_data =  tk.Entry()
 entry_data.grid(row=2, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
-#if data != str('%H:%M'):
-#    print('Formato errado, digite novamente: ')
 
-def validate_date(date_text):
+
+date_text = entry_data.get()
+
+def validate_date(date_text, format_string='%d/%m/%Y'):
     """
     Checks if the entered text is a valid date in the format YYYY-MM-DD.
 
@@ -102,49 +103,60 @@ def validate_date(date_text):
     """
 
     try:
-        dt.strptime(date_text, '%d/%m/%Y')
+        dt.strptime(date_text, format_string)
+        #dt.strptime(date_text, '%d/%m/%Y')
         return True
     except ValueError:
         return False
-    
+
 def check_data_entry():
     """
-    Gets the text from the entry widget and performs date validation.
-
-    Displays an error message if the date is invalid.
+    Gets the text from the entry widget, performs date validation,
+    and displays an error message or clears the error label accordingly.
     """
 
-    date_text = entry_data.get()
+    
     if not validate_date(date_text):
-        error_label.config(text="Invalid date format. Please use YYYY-MM-DD.")
+        window = tk.Tk()
+        _extracted_from_check_data_entry_9()
     else:
+        error_label.config(text="formato errado. favor usar no DD/MM/AAAA.")
         error_label.config(text="")  # Clear error message if valid
-'''
+        error_label = tk.Label(window, text="", fg="red")  # Red color for error messages
+        error_label.grid(row=3, column=0, columnspan=4, sticky='nsew')
+
+
+# TODO Rename this here and in `check_data_entry`
+def _extracted_from_check_data_entry_9():
+    
+    
+    label_data = tk.Label(text="DATA")
+    label_data.grid(row=2, column=0, padx=10, pady=10, sticky='nswe', columnspan=2)
+    entry_data = tk.Entry()
+    entry_data.grid(row=2, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
+
 # Create the main window
-window = tk.Tk()
+        
 
 # Label for "DATA"
-label_data = tk.Label(window, text="DATA")
-label_data.grid(row=2, column=0, padx=10, pady=10, sticky='nswe', columnspan=2)
-
+        
 # Entry widget for data
-entry_data = tk.Entry(window)
-entry_data.grid(row=2, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
 
 # Error label for displaying validation messages
-error_label = tk.Label(window, text="", fg="red")  # Red color for error messages
-error_label.grid(row=3, column=0, columnspan=4, sticky='nsew')
-
+        
 # Button to trigger data entry check (optional, for manual validation)
 # check_button = tk.Button(window, text="Check Data", command=check_data_entry)
 # check_button.grid(row=4, column=2)
 
 # Bind the check function to the <Return> (Enter) key press in the entry widget
 # for real-time validation during typing
-entry_data.bind("<Return>", lambda event: check_data_entry())
+#entry_data.bind("<Return>", lambda event: check_data_entry())
 
 # Run the main event loop
-window.mainloop()'''
+    #window.mainloop()
+
+
+entry_data.bind("<Return>", lambda event: combobox_selecionar_tipo.focus_set(),validate_date(date_text),check_data_entry())
 
 
 label_projeto = tk.Label(text="RESERVA")
@@ -152,32 +164,29 @@ label_projeto.grid(row=3, column=0,padx = 10, pady=10, sticky='nswe', columnspan
 combobox_selecionar_tipo = ttk.Combobox(values=lista_projetos)
 combobox_selecionar_tipo.grid(row=3, column=2, padx = 10, pady=10, sticky='nswe', columnspan = 2)
 
+combobox_selecionar_tipo.bind("<Return>", lambda event: combobox_selecionar_tipo1.focus_set())
 
 label_tipo_unidade = tk.Label(text="ZONA")
 label_tipo_unidade.grid(row=4, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 combobox_selecionar_tipo1 = ttk.Combobox(values=lista_setor)
 combobox_selecionar_tipo1.grid(row=4, column=2, padx = 10, pady=10, sticky='nswe', columnspan = 2)
 
+combobox_selecionar_tipo1.bind("<Return>", lambda event: combobox_selecionar_tipo2.focus_set())
+
 label_cod_operacao =  tk.Label(text='PRODUTO')
 label_cod_operacao.grid(row=5, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 combobox_selecionar_tipo2 = ttk.Combobox(values=lista_codop)
 combobox_selecionar_tipo2.grid(row=5, column=2, padx = 10, pady=10, sticky='nswe', columnspan = 2)
 
-def update_entry(combobox_selecionar_tipo2):
-    selected_item = combobox_selecionar_tipo2.get()  # Get the selected item from the combobox
-    #entry_insumo.delete(0, tk.END)  # Clear the entry widget
-    entry_insumo.insert(0, selected_item)  # Insert the selected item into the entry
-
-# Bind the update_entry function to the selection change event of the combobox
-combobox_selecionar_tipo2.bind("<<ComboboxSelected>>", update_entry)
+combobox_selecionar_tipo2.bind("<Return>", lambda event: entry_insumo.focus_set())
 
 label_insumo =  tk.Label(text="COD PRODUTO")
 label_insumo.grid(row=6, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
-'''
-entry_insumo =  tk.Entry(combobox_selecionar_tipo2.GET())
-'''
-entry_insumo = tk.entry(entry_insumo)
+entry_insumo = tk.Entry()
 entry_insumo.grid(row=6, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
+
+
+entry_insumo.bind("<Return>", lambda event: entry_insumo1.focus_set())
 
 label_insumo1 =  tk.Label(text="AREA")
 label_insumo1.grid(row=7, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
@@ -204,10 +213,17 @@ label_insumo5.grid(row=11, column=0,padx = 10, pady=10, sticky='nswe', columnspa
 entry_insumo5 =  tk.Entry()
 entry_insumo5.grid(row=11, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 '''
+
+
+entry_insumo1.bind("<Return>", lambda event: entry_insumo6.focus_set())
+
 label_insumo6 =  tk.Label(text="MES")
 label_insumo6.grid(row=12, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 entry_insumo6 =  tk.Entry()
 entry_insumo6.grid(row=12, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
+
+
+entry_insumo6.bind("<Return>", lambda event: entry_insumo7.focus_set())
 
 label_insumo7 =  tk.Label(text="INSUMO 7")
 label_insumo7.grid(row=13, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
@@ -215,23 +231,30 @@ entry_insumo7 =  tk.Entry()
 entry_insumo7.grid(row=13, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 
 
+entry_insumo7.bind("<Return>", lambda event: entry_horainicial.focus_set())
+
 label_horainicial =  tk.Label(text="HORA INICIAL")
 label_horainicial.grid(row=18, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 entry_horainicial =  tk.Entry()
 entry_horainicial.grid(row=18, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 
+
+entry_horainicial.bind("<Return>", lambda event: entry_horafinal.focus_set())
+
 label_horafinal =  tk.Label(text="HORA FINAL")
 label_horafinal.grid(row=19, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 entry_horafinal =  tk.Entry()
 entry_horafinal.grid(row=19, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
-'''
+
+entry_horafinal.bind("<Return>", lambda event: botao_criar_codigo.focus_set())
+
 botao_criar_codigo = tk.Button(text="REGISTRAR", command=inserir_codigo)
 botao_criar_codigo.grid(row=20,column=0,padx = 10, pady=10,sticky='nswe', columnspan =2)
 
-botao_criar_codigo = tk.Button(text="limpar", command=limpar)
-botao_criar_codigo.grid(row=20,column=2,padx = 10, pady=10,sticky='nswe', columnspan =2)
+botao_criar_codigo1 = tk.Button(text="LIMPAR", command=limpar)
+botao_criar_codigo1.grid(row=20,column=2,padx = 10, pady=10,sticky='nswe', columnspan =2)
 
-botao_criar_codigo = tk.Button(text="fechar", command=fechar)
-botao_criar_codigo.grid(row=20,column=4,padx = 10, pady=10,sticky='nswe', columnspan =2)
+botao_criar_codigo2 = tk.Button(text="FECHAR", command=fechar)
+botao_criar_codigo2.grid(row=20,column=4,padx = 10, pady=10,sticky='nswe', columnspan =2)
 
 janela.mainloop()
