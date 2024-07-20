@@ -89,75 +89,36 @@ entry_data =  tk.Entry()
 entry_data.grid(row=2, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 
 
-date_text = entry_data.get()
-
-def validate_date(date_text, format_string='%d/%m/%Y'):
+def validate_and_show_error(date_text, format_string='%d/%m/%Y'):
     """
-    Checks if the entered text is a valid date in the format YYYY-MM-DD.
+    Validates the entered date and displays an error window if invalid.
 
     Args:
         date_text (str): The text to be validated.
-
-    Returns:
-        bool: True if the text is a valid date, False otherwise.
+        format_string (str, optional): The date format string. Defaults to '%Y-%m-%d'.
     """
 
     try:
         dt.strptime(date_text, format_string)
-        #dt.strptime(date_text, '%d/%m/%Y')
-        return True
     except ValueError:
-        return False
+        error_window = tk.Toplevel()
+        error_window.title("Erro")
+        error_label = tk.Label(error_window, text="FORMATO DE DATA ERRADA. POR FAVOR use DD/MM/AAAA.")
+        error_label.pack()
+        error_window.mainloop()  # Display the error window
 
 def check_data_entry():
     """
     Gets the text from the entry widget, performs date validation,
-    and displays an error message or clears the error label accordingly.
+    and either switches focus or displays an error window.
     """
 
-    
-    if not validate_date(date_text):
-        window = tk.Tk()
-        _extracted_from_check_data_entry_9()
-    else:
-        error_label.config(text="formato errado. favor usar no DD/MM/AAAA.")
-        error_label.config(text="")  # Clear error message if valid
-        error_label = tk.Label(window, text="", fg="red")  # Red color for error messages
-        error_label.grid(row=3, column=0, columnspan=4, sticky='nsew')
+    date_text = entry_data.get()
+    validate_and_show_error(date_text)
 
-
-# TODO Rename this here and in `check_data_entry`
-def _extracted_from_check_data_entry_9():
-    
-    
-    label_data = tk.Label(text="DATA")
-    label_data.grid(row=2, column=0, padx=10, pady=10, sticky='nswe', columnspan=2)
-    entry_data = tk.Entry()
-    entry_data.grid(row=2, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
-
-# Create the main window
-        
-
-# Label for "DATA"
-        
-# Entry widget for data
-
-# Error label for displaying validation messages
-        
-# Button to trigger data entry check (optional, for manual validation)
-# check_button = tk.Button(window, text="Check Data", command=check_data_entry)
-# check_button.grid(row=4, column=2)
-
-# Bind the check function to the <Return> (Enter) key press in the entry widget
-# for real-time validation during typing
-#entry_data.bind("<Return>", lambda event: check_data_entry())
-
-# Run the main event loop
-    #window.mainloop()
-
-
-entry_data.bind("<Return>", lambda event: combobox_selecionar_tipo.focus_set(),validate_date(date_text),check_data_entry())
-
+#entry_data.bind('<esc>', lambda event: janela.destroy())
+#entry_data.bind("<Return>", lambda event:  check_data_entry())
+entry_data.bind('<Return>', lambda event: combobox_selecionar_tipo.focus_set())
 
 label_projeto = tk.Label(text="RESERVA")
 label_projeto.grid(row=3, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
