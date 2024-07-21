@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from datetime import datetime as dt
+import regex as re
 import csv
 lista_codop = ['1 Irrigação','2 Fertirrigação','3 Aplic bioestimulante','4 Aplic inset','5 Aplic nematicida','6 Aplicação vinhaça','7 Lavagem de arrasto','8 Lavagem sistema','9 Limpeza em blocos','10 Limpeza rede principal','11 Montagem de válvulas','12 Chuva','13 Dry Off (preparação  dry off)','14 Enchimento reservatório','15 Falta de energia','16 Manutenção elétrica','17 Manutenção hidraulica (malha)','18 Manutenção mecanica','19 Solo úmido','99 sem irrigação']
 lista_projetos = ['P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','P11','P12','P13','P14','P15','P16']
@@ -71,6 +73,22 @@ def limpar():
 def fechar():
     janela.destroy()
 
+'''def validate_and_show_error(date_text, format_string='%d/%m/%Y'):
+    if not format_string:
+        messagebox.showerror('ERRO' , 'FAVOR INSERIR A DATA NO FORMATO DD/MM/AAAA')
+    else:
+        return
+def check_data_entry():
+   
+    Gets the text from the entry widget, performs date validation,
+    and either switches focus or displays an error window.
+    
+
+    date_text = entry_data.get()
+    validate_and_show_error(date_text)
+'''
+#entry_data.bind('<esc>', lambda event: janela.destroy())
+#entry_data.bind("<Return>", lambda event:  check_data_entry())
 
 
 
@@ -88,38 +106,17 @@ label_data.grid(row=2, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2
 entry_data =  tk.Entry()
 entry_data.grid(row=2, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 
+data = entry_data.get()
+def validar_data(data):
+    datavali = dt.strftime('%d/%m/%Y')
+    if data != datavali:
+        messagebox.showerror("Erro", "por favor entre com a data")
+        return
+    
 
-def validate_and_show_error(date_text, format_string='%d/%m/%Y'):
-    """
-    Validates the entered date and displays an error window if invalid.
-
-    Args:
-        date_text (str): The text to be validated.
-        format_string (str, optional): The date format string. Defaults to '%Y-%m-%d'.
-    """
-
-    try:
-        dt.strptime(date_text, format_string)
-    except ValueError:
-        error_window = tk.Toplevel()
-        error_window.title("Erro")
-        error_label = tk.Label(error_window, text="FORMATO DE DATA ERRADA. POR FAVOR use DD/MM/AAAA.")
-        error_label.pack()
-        error_window.mainloop()  # Display the error window
-
-def check_data_entry():
-    """
-    Gets the text from the entry widget, performs date validation,
-    and either switches focus or displays an error window.
-    """
-
-    date_text = entry_data.get()
-    validate_and_show_error(date_text)
-
-#entry_data.bind('<esc>', lambda event: janela.destroy())
-#entry_data.bind("<Return>", lambda event:  check_data_entry())
-entry_data.bind('<Return>', lambda event: combobox_selecionar_tipo.focus_set())
-
+#entry_data.bind('<Return>', lambda event: combobox_selecionar_tipo.focus_set() and validar_data(data))
+entry_data.bind('<return>', validar_data(data))
+entry_data.bind('<return>', lambda event:combobox_selecionar_tipo.focus_set,add='+')
 label_projeto = tk.Label(text="RESERVA")
 label_projeto.grid(row=3, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
 combobox_selecionar_tipo = ttk.Combobox(values=lista_projetos)
