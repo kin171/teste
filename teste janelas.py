@@ -55,12 +55,6 @@ window.mainloop()
 import tkinter as tk
 from tkinter import messagebox
 import regex as re
-def validate_name(self):
-    
-    if not name:
-            messagebox.showerror("Error", "Please enter your name")
-    else:
-            messagebox.showinfo("Success", "Form data processed successfully!")
 
 class FormValidator:
     def __init__(self, master):
@@ -85,8 +79,14 @@ class FormValidator:
         self.phone_entry.grid(row=2, column=1)
 
         # Create submit button
-        self.submit_button = tk.Button(master, text="Submit", command=self.validate_form)
+        self.submit_button = tk.Button(master, text="Submit", command= self.validate_form(self))
         self.submit_button.grid(row=3, column=1)
+def validate_name(self):
+    name = self.name_entry.get()
+    if not name:
+            messagebox.showerror("Error", "Please enter your name")
+    else:
+            messagebox.showinfo("Success", "Form data processed successfully!")
 
     
     def validate_form(self):
