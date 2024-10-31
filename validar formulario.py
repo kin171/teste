@@ -1,89 +1,64 @@
-
-
 import tkinter as tk
 from tkinter import messagebox
-import re
 
-class FormValidator:
+def fechar_janela():
+    master.destroy()
+def insumo_formulario(self):
+        # Obter valores dos campos do formulário
+        insumo = self.insumo_entry.get()
+        #zona = self.zona_entry.get()
+        #area = self.area_entry.get()
+
+
+        # Validar campos do formulário
+        if not insumo:
+            messagebox.showerror("Erro", "Por favor, informe o insumo")
+            return
+        #if not zona:
+        #    messagebox.showerror("Erro", "Por favor, informe a zona")
+        #    return
+        #if not area:
+        #    messagebox.showerror("Erro", "Por favor, informe o area")
+        #    return
+
+class Formulario:
     def __init__(self, master):
         self.master = master
-        self.master.title("Form Validator")
+        self.master.title("Formulário de Exemplo")
 
-        # Create form fields
-        self.data_label = tk.Label(master, text="Data (dd/mm/yyyy):")
-        self.data_label.grid(row=0, column=0)
-        self.data_entry = tk.Entry(master)
-        self.data_entry.grid(row=0, column=1)
-        self.data_entry.bind('<Return>', lambda event: self.insumo_entry.focus_set() and validar_data(self))
-
-
-        self.insumo_label = tk.Label(master, text="Insumo:")
-        self.insumo_label.grid(row=1, column=0)
+        # Criar campos do formulário
+        self.insumo_label = tk.Label(master, text="insumo:")
+        self.insumo_label.grid(row=0, column=0)
         self.insumo_entry = tk.Entry(master)
-        self.insumo_entry.grid(row=1, column=1)
+        self.insumo_entry.grid(row=0, column=1)
+        self.insumo_entry.bind('<Return>', lambda event: self.zona_entry.focus_set() and insumo_formulario(self))
 
-        self.area_aplicada_label = tk.Label(master, text="Área Aplicada (m²):")
-        self.area_aplicada_label.grid(row=2, column=0)
-        self.area_aplicada_entry = tk.Entry(master)
-        self.area_aplicada_entry.grid(row=2, column=1)
+        self.zona_label = tk.Label(master, text="zona:")
+        self.zona_label.grid(row=1, column=0)
+        self.zona_entry = tk.Entry(master)
+        self.zona_entry.grid(row=1, column=1)
+        self.zona_entry.bind('<Return>', lambda event: self.area_entry.focus_set())
 
-        self.area_total_label = tk.Label(master, text="Área Total (m²):")
-        self.area_total_label.grid(row=3, column=0)
-        self.area_total_entry = tk.Entry(master)
-        self.area_total_entry.grid(row=3, column=1)
+        self.area_label = tk.Label(master, text="area:")
+        self.area_label.grid(row=2, column=0)
+        self.area_entry = tk.Entry(master)
+        self.area_entry.grid(row=2, column=1)
+        self.area_entry.bind('<Return>', lambda event: self.enviar_button.focus_set())
 
-        # Create submit button
-        self.submit_button = tk.Button(master, text="Submit", command=self.validar_data)
-        self.submit_button.grid(row=4, column=1)
-    def validar_data(self):
-        data = self.data_entry.get()
-        # Validate data
-        data_regex = r'^\d{2}/\d{2}/\d{4}$'
-        if not re.match(data_regex, data):
-            messagebox.showerror("Error", "Please enter a valid date (dd/mm/yyyy)")
+        # Criar botão de envio
+        self.enviar_button = tk.Button(master, text="Enviar", command=self.enviar_formulario)
+        self.enviar_button.grid(row=3, column=1)
+        self.fechar_button = tk.Button(master, text="fechar", command=fechar_janela)
+        self.fechar_button.grid(row=3, column=2)
     
-    
-    def validate_form(self):
-        # Get form data
-        data = self.data_entry.get()
-        insumo = self.insumo_entry.get()
-        area_aplicada = self.area_aplicada_entry.get()
-        area_total = self.area_total_entry.get()
-
-        # Validate data
-        data_regex = r'^\d{2}/\d{2}/\d{4}$'
-        if not re.match(data_regex, data):
-            messagebox.showerror("Error", "Please enter a valid date (dd/mm/yyyy)")
-            return
-
-        # Validate insumo
-        if not insumo:
-            messagebox.showerror("Error", "Please enter the insumo")
-            return
-
-        # Validate area aplicada
-        try:
-            area_aplicada_float = float(area_aplicada)
-            if area_aplicada_float <= 0:
-                messagebox.showerror("Error", "Please enter a valid area aplicada (greater than 0)")
-                return
-        except ValueError:
-            messagebox.showerror("Error", "Please enter a valid area aplicada (number)")
-            return
-
-        # Validate area total
-        try:
-            area_total_float = float(area_total)
-            if area_total_float <= 0:
-                messagebox.showerror("Error", "Please enter a valid area total (greater than 0)")
-                return
-        except ValueError:
-            messagebox.showerror("Error", "Please enter a valid area total (number)")
-            return
-
-# If all validations pass, process the form data
-#messagebox.showinfo("Success", "Form data processed successfully!")
+    def enviar_formulario(self):
+        insumo: self.insumo_entry.get()
+        # Enviar formulário (por exemplo, para um banco de dados ou um servidor)
+        print("Formulário enviado com sucesso!")
+        print("insumo:", insumo)
+        print("zona:", zona)
+        print("area:", area)
 
 root = tk.Tk()
-#form_validator = FormValidator(root)
-#root.mainloop()
+form = Formulario(root)
+root.mainloop()
