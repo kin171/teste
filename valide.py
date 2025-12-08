@@ -8,29 +8,34 @@ class FormValidator:
         self.master.title("Form Validator")
 
         # Create form fields
-        self.data_label = tk.Label(master, text="Data (dd/mm/yyyy):")
+        self.data_label = tk.Label(master, text="Data (dd/mm/yy):")
         self.data_label.grid(row=0, column=0)
         self.data_entry = tk.Entry(master)
         self.data_entry.grid(row=0, column=1)
+        self.data_entry.bind('<Return>', lambda event: self.insumo_entry.focus_set())
 
         self.insumo_label = tk.Label(master, text="Insumo:")
         self.insumo_label.grid(row=1, column=0)
         self.insumo_entry = tk.Entry(master)
         self.insumo_entry.grid(row=1, column=1)
+        self.data_entry.bind('<Return>', lambda event: self.area_aplicada_entry.focus_set())
 
-        self.area_aplicada_label = tk.Label(master, text="Área Aplicada (m²):")
+        self.area_aplicada_label = tk.Label(master, text="Área Aplicada (ha):")
         self.area_aplicada_label.grid(row=2, column=0)
         self.area_aplicada_entry = tk.Entry(master)
         self.area_aplicada_entry.grid(row=2, column=1)
+        self.data_entry.bind('<Return>', lambda event: self.area_total_entry.focus_set())
 
-        self.area_total_label = tk.Label(master, text="Área Total (m²):")
+        self.area_total_label = tk.Label(master, text="Área Total (ha):")
         self.area_total_label.grid(row=3, column=0)
         self.area_total_entry = tk.Entry(master)
         self.area_total_entry.grid(row=3, column=1)
+        '''self.data_entry.bind('<Return>', lambda event: self.submit_button.focus_set())'''
 
         # Create submit button
         self.submit_button = tk.Button(master, text="Submit", command=self.validate_form)
         self.submit_button.grid(row=4, column=1)
+        
 
     def validate_form(self):
         # Get form data
@@ -40,9 +45,9 @@ class FormValidator:
         area_total = self.area_total_entry.get()
 
         # Validate data
-        data_regex = r'^\d{2}/\d{2}/\d{4}$'
+        data_regex = r'^\d{2}/\d{2}/\d{2}$'
         if not re.match(data_regex, data):
-            messagebox.showerror("Error", "Please enter a valid date (dd/mm/yyyy)")
+            messagebox.showerror("Error", "Please enter a valid date (dd/mm/yy)")
             return
 
         # Validate insumo

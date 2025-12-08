@@ -1,0 +1,7 @@
+- [x] Refatorar código para usar listas/dicionários ao invés de globals() para os widgets de EPI
+- [x] Alterar estrutura de salvamento no Excel para formato longo (uma linha por EPI)
+- [x] Corrigir tratamento de CS (sempre como int quando necessário)
+- [x] Melhorar carregamento e salvamento do histórico de solicitações
+- [x] Corrigir bindings e atualizações de preço/estoque/última vez
+- [x] Adicionar validações básicas (CS obrigatório, pelo menos um EPI selecionado)
+- [x] Testar a aplicação após as correções
