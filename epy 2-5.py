@@ -1,6 +1,11 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, filedialog
 from datetime import datetime
+import pandas as pd
+import os
+import openpyxl  # Para anexar ao Excel
+from office365.runtime.auth.authentication_context import AuthenticationContext
+from office365.sharepoint.client_context import ClientContext
 
 # Simulação de dados de estoque (substitua por dados reais ou carregue de um arquivo/BD)
 estoque_data = {
@@ -26,6 +31,12 @@ funcionarios_data = {
     '123': {'nome': 'João Silva', 'custo': 'Centro A'},
     '456': {'nome': 'Maria Santos', 'custo': 'Centro B'},
 }
+
+# Global dataframes
+df_estoque = pd.DataFrame()
+df_funcionarios = pd.DataFrame()
+df_historico = pd.DataFrame()
+hist_file_path = "historico_solicitacoes.xlsx"
 
 class EPISolicitacaoApp:
     def __init__(self, root):

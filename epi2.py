@@ -1,9 +1,12 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, filedialog
+from tkinter import ttk, messagebox, filedialog, simpledialog
 import pandas as pd
 from datetime import datetime
 import os
 import openpyxl  # Para anexar ao Excel
+from office365.runtime.auth.authentication_context import AuthenticationContext
+from office365.sharepoint.client_context import ClientContext
+import tempfile
 
 # Função para carregar dados do Excel (local ou SharePoint)
 def carregar_dados():
@@ -12,9 +15,82 @@ def carregar_dados():
         # Opção para carregar de SharePoint ou local
         sharepoint = messagebox.askyesno("Carregar de SharePoint", "Deseja carregar arquivos do SharePoint? (Caso contrário, selecione arquivos locais)")
         if sharepoint:
-            # Placeholder: Integração com SharePoint requer bibliotecas como office365-rest-python-client
-            messagebox.showerror("Erro", "Integração com SharePoint não implementada. Use arquivos locais.")
-            return
+            # Solicitar credenciais e caminhos do SharePoint
+            site_url = simpledialog.askstring("SharePoint Site URL", "Digite a URL do site SharePoint (ex: https://yourtenant.sharepoint.com/sites/yoursite):")
+            if not site_url:
+                messagebox.showwarning("Aviso", "URL do site não fornecida. Voltando para carregamento local.")
+                return
+
+            username = simpledialog.askstring("Username", "Digite o nome de usuário (ex: user@domain.com):")
+            if not username:
+                messagebox.showwarning("Aviso", "Nome de usuário não fornecido. Voltando para carregamento local.")
+                return
+
+            password = simpledialog.askstring("Password", "Digite a senha:", show='*')
+            if not password:
+                messagebox.showwarning("Aviso", "Senha não fornecida. Voltando para carregamento local.")
+                return
+
+            # Caminhos dos arquivos no SharePoint (relativos ao site)
+            estoque_path = simpledialog.askstring("Arquivo Estoque", "Digite o caminho relativo do arquivo Estoque (ex: /Shared Documents/estoque.xlsx):")
+            if not estoque_path:
+                messagebox.showwarning("Aviso", "Caminho do arquivo Estoque não fornecido. Voltando para carregamento local.")
+                return
+
+            func_path = simpledialog.askstring("Arquivo Funcionários", "Digite o caminho relativo do arquivo Funcionários (ex: /Shared Documents/funcionarios.xlsx):")
+            if not func_path:
+                messagebox.showwarning("Aviso", "Caminho do arquivo Funcionários não fornecido. Voltando para carregamento local.")
+                return
+
+            hist_path = simpledialog.askstring("Arquivo Histórico", "Digite o caminho relativo do arquivo Histórico (ex: /Shared Documents/historico.xlsx):", initialvalue="/Shared Documents/historico_solicitacoes.xlsx")
+
+            try:
+                # Autenticar no SharePoint
+                ctx_auth = AuthenticationContext(site_url)
+                if ctx_auth.acquire_token_for_user(username, password):
+                    ctx = ClientContext(site_url, ctx_auth)
+
+                    # Baixar arquivos
+                    temp_dir = tempfile.mkdtemp()
+
+                    # Estoque
+                    estoque_file_path = os.path.join(temp_dir, "estoque.xlsx")
+                    with open(estoque_file_path, "wb") as local_file:
+                        file = ctx.web.get_file_by_server_relative_path(estoque_path)
+                        file.download(local_file).execute_query()
+                    df_estoque = pd.read_excel(estoque_file_path)
+
+                    # Funcionários
+                    func_file_path = os.path.join(temp_dir, "funcionarios.xlsx")
+                    with open(func_file_path, "wb") as local_file:
+                        file = ctx.web.get_file_by_server_relative_path(func_path)
+                        file.download(local_file).execute_query()
+                    df_funcionarios = pd.read_excel(func_file_path)
+
+                    # Histórico (opcional)
+                    if hist_path:
+                        hist_file_path = os.path.join(temp_dir, "historico.xlsx")
+                        try:
+                            with open(hist_file_path, "wb") as local_file:
+                                file = ctx.web.get_file_by_server_relative_path(hist_path)
+                                file.download(local_file).execute_query()
+                            df_historico = pd.read_excel(hist_file_path)
+                            hist_file_path = hist_path  # Usar o caminho do SharePoint para salvar
+                        except Exception as e:
+                            messagebox.showwarning("Aviso", f"Arquivo de histórico não encontrado ou erro ao baixar: {str(e)}. Criando novo.")
+                            df_historico = pd.DataFrame(columns=['CS', 'Nome', 'Centro de Custo', 'Data', 'EPI', 'Quantidade', 'Preco', 'Estoque'])
+                            hist_file_path = "historico_solicitacoes.xlsx"
+                    else:
+                        df_historico = pd.DataFrame(columns=['CS', 'Nome', 'Centro de Custo', 'Data', 'EPI', 'Quantidade', 'Preco', 'Estoque'])
+                        hist_file_path = "historico_solicitacoes.xlsx"
+
+                    messagebox.showinfo("Sucesso", "Dados carregados do SharePoint com sucesso!")
+                else:
+                    messagebox.showerror("Erro", "Falha na autenticação do SharePoint. Verifique as credenciais.")
+                    return
+            except Exception as e:
+                messagebox.showerror("Erro", f"Erro ao carregar dados do SharePoint: {str(e)}. Tente carregamento local.")
+                return
         
         # Carregar localmente
         estoque_file = filedialog.askopenfilename(title="Selecione o arquivo de Estoque", filetypes=[("Excel files", "*.xlsx")])
